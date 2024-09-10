@@ -18,6 +18,8 @@ import com.iszero.viewmodelstudy.ViewModel.MainViewModel
 @Composable
 fun MainScreen(viewModel: MainViewModel, modifier: Modifier) {
     val data = viewModel.data.observeAsState(initial = "")
+    //ui에 바로 반영되게 하려면 observeAsState 사용 initial 뒤는 초기값
+    //data.value로 접근하면 값만 불러오므로 바로 ui에 반영안됨
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -30,6 +32,6 @@ fun MainScreen(viewModel: MainViewModel, modifier: Modifier) {
             Text(text = "Update")
             Log.d("MainScreen", "MainScreen: ${data.value}")
         }
-        Text(text = data.value ?: "")
+        Text(text = data.value ?: "")//data.value가 null이면 "" 으로 표시
     }
 }
