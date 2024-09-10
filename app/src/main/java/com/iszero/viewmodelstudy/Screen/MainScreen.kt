@@ -32,6 +32,6 @@ fun MainScreen(viewModel: MainViewModel, modifier: Modifier) {
             Text(text = "Update")
             Log.d("MainScreen", "MainScreen: ${data.value}")
         }
-        Text(text = data.value ?: "")//data.value가 null이면 "" 으로 표시
+        Text(text = data.value ?: "")//data가 null이면 "" 으로 표시
     }
 }
