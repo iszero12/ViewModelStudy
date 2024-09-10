@@ -8,6 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,7 +18,7 @@ import com.iszero.viewmodelstudy.ViewModel.MainViewModel
 
 @Composable
 fun MainScreen(viewModel: MainViewModel, modifier: Modifier) {
-    val data = viewModel.data.observeAsState(initial = "")
+    val data by viewModel.data.observeAsState("loding")
     //ui에 바로 반영되게 하려면 observeAsState 사용 initial 뒤는 초기값
     //data.value로 접근하면 값만 불러오므로 바로 ui에 반영안됨
 
@@ -30,8 +31,8 @@ fun MainScreen(viewModel: MainViewModel, modifier: Modifier) {
         TextField(value = text, onValueChange = setValue)
         Button(onClick = { viewModel.updateData(text) }) {
             Text(text = "Update")
-            Log.d("MainScreen", "MainScreen: ${data.value}")
+            Log.d("MainScreen", "MainScreen: ${data}")
         }
-        Text(text = data.value ?: "")//data가 null이면 "" 으로 표시
+        Text(text = data ?: "")//data가 null이면 "" 으로 표시
     }
 }

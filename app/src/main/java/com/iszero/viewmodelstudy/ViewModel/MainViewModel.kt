@@ -1,14 +1,16 @@
 package com.iszero.viewmodelstudy.ViewModel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-    val data = MutableLiveData<String>()
+    val _data = MutableLiveData<String>()
+    val data:LiveData<String> get() = _data
 
     fun updateData(newData: String){
-        data.value = newData
+        _data.value = newData
         Log.d("MainViewModel", "updateData: $newData")
     }
 }
